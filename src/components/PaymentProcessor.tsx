@@ -1,5 +1,3 @@
-import React from 'react';
-
 const PaymentProcessor = () => {
   return (
     <div className="max-w-md mx-auto bg-stone-900 text-white p-10 rounded-lg shadow-2xl text-center space-y-6 animate-in zoom-in duration-500">

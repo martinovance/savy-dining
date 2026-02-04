@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Menu = () => {
   const items = [
     { name: "Wagyu Carpaccio", price: "$34", desc: "Truffle vinaigrette, parmesan crisp, micro-greens." },

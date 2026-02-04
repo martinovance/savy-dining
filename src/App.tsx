@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ReservationForm from './components/ReservationForm';
 import Menu from './components/Menu';
 import PaymentProcessor from './components/PaymentProcessor';

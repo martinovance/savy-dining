@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, FormEvent } from 'react';
 
 const ReservationForm = ({ onComplete }: { onComplete: () => void }) => {
   const [formData, setFormData] = useState({
@@ -9,7 +9,7 @@ const ReservationForm = ({ onComplete }: { onComplete: () => void }) => {
     guests: '2'
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     console.log('Reservation Request:', formData);
     onComplete();
