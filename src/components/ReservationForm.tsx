@@ -2,13 +2,28 @@ import { useState, FormEvent } from 'react';
 
 const ReservationForm = ({ onComplete }: { onComplete: () => void }) => {
   const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    guests: '2',
+    date: '',
+    time: '19:00'
+  });
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    
+    // Simulating dummy email notification logic
+    console.log("Simulating email confirmation to:", formData.email);
+    console.log("Booking details:", formData);
+
     setTimeout(() => {
       setLoading(false);
       onComplete();
+      // Dummy frontend method: Using an alert or a hidden mailto can work, 
+      // but for testing we'll just log it and proceed to the success state.
     }, 1500);
   };
 
@@ -19,11 +34,22 @@ const ReservationForm = ({ onComplete }: { onComplete: () => void }) => {
         <div className="grid md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <label className="text-xs uppercase tracking-widest text-zinc-500">Full Name</label>
-            <input required type="text" className="input-field" placeholder="John Doe" />
+            <input 
+              required 
+              type="text" 
+              className="input-field" 
+              placeholder="John Doe"
+              value={formData.name}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
+            />
           </div>
           <div className="space-y-2">
             <label className="text-xs uppercase tracking-widest text-zinc-500">Guests</label>
-            <select className="input-field">
+            <select 
+              className="input-field"
+              value={formData.guests}
+              onChange={(e) => setFormData({...formData, guests: e.target.value})}
+            >
               {[1, 2, 3, 4, 5, 6].map(n => <option key={n} value={n}>{n} {n === 1 ? 'Guest' : 'Guests'}</option>)}
             </select>
           </div>
@@ -31,12 +57,47 @@ const ReservationForm = ({ onComplete }: { onComplete: () => void }) => {
 
         <div className="grid md:grid-cols-2 gap-6">
           <div className="space-y-2">
+            <label className="text-xs uppercase tracking-widest text-zinc-500">Email Address</label>
+            <input 
+              required 
+              type="email" 
+              className="input-field" 
+              placeholder="john@example.com"
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+            />
+          </div>
+          <div className="space-y-2">
+            <label className="text-xs uppercase tracking-widest text-zinc-500">Phone Number</label>
+            <input 
+              required 
+              type="tel" 
+              className="input-field" 
+              placeholder="+1 (555) 000-0000"
+              value={formData.phone}
+              onChange={(e) => setFormData({...formData, phone: e.target.value})}
+            />
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-2">
             <label className="text-xs uppercase tracking-widest text-zinc-500">Date</label>
-            <input required type="date" className="input-field" />
+            <input 
+              required 
+              type="date" 
+              className="input-field"
+              value={formData.date}
+              onChange={(e) => setFormData({...formData, date: e.target.value})}
+            />
           </div>
           <div className="space-y-2">
             <label className="text-xs uppercase tracking-widest text-zinc-500">Time</label>
-            <select className="input-field">
+            <select 
+              className="input-field"
+              value={formData.time}
+              onChange={(e) => setFormData({...formData, time: e.target.value})}
+            >
               {['18:00', '19:00', '20:00', '21:00'].map(t => <option key={t} value={t}>{t}</option>)}
             </select>
           </div>

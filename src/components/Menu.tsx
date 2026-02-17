@@ -2,15 +2,35 @@ const menuItems = [
   {
     category: "Appetizers",
     items: [
-      { name: "Wagyu Carpaccio", price: "$34", desc: "Truffle vinaigrette, parmesan crisp, micro-greens." },
-      { name: "Pan-Seared Scallops", price: "$42", desc: "Cauliflower purée, pancetta, lemon herb oil." }
+      { 
+        name: "Wagyu Carpaccio", 
+        price: "$34", 
+        desc: "Truffle vinaigrette, parmesan crisp, micro-greens.",
+        image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&q=80&w=400" 
+      },
+      { 
+        name: "Pan-Seared Scallops", 
+        price: "$42", 
+        desc: "Cauliflower purée, pancetta, lemon herb oil.",
+        image: "https://images.unsplash.com/photo-1532639183881-28004163982a?auto=format&fit=crop&q=80&w=400"
+      }
     ]
   },
   {
     category: "Main Courses",
     items: [
-      { name: "Lobster Thermidor", price: "$68", desc: "Brandy cream, Gruyère crust, butter-poached claw." },
-      { name: "Dry-Aged Ribeye", price: "$85", desc: "32-day aged, bone-in, roasted marrow butter." }
+      { 
+        name: "Lobster Thermidor", 
+        price: "$68", 
+        desc: "Brandy cream, Gruyère crust, butter-poached claw.",
+        image: "https://images.unsplash.com/photo-1553247407-23251cecca19?auto=format&fit=crop&q=80&w=400"
+      },
+      { 
+        name: "Dry-Aged Ribeye", 
+        price: "$85", 
+        desc: "32-day aged, bone-in, roasted marrow butter.",
+        image: "https://images.unsplash.com/photo-1546241072-48010ad28c2c?auto=format&fit=crop&q=80&w=400"
+      }
     ]
   }
 ];
@@ -30,6 +50,13 @@ const Menu = () => {
             <div className="space-y-8">
               {section.items.map((item, i) => (
                 <div key={i} className="group cursor-default">
+                  <div className="relative overflow-hidden mb-4 rounded-lg aspect-video">
+                    <img 
+                      src={item.image} 
+                      alt={item.name} 
+                      className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700"
+                    />
+                  </div>
                   <div className="flex justify-between items-baseline mb-2">
                     <h4 className="font-serif text-lg text-stone-200 group-hover:text-amber-500 transition-colors">{item.name}</h4>
                     <span className="text-amber-500/80 font-serif">{item.price}</span>
