@@ -1,74 +1,59 @@
 import { useState, FormEvent } from 'react';
 
 const ReservationForm = ({ onComplete }: { onComplete: () => void }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    whatsapp: '',
-    date: '',
-    time: '',
-    guests: '2'
-  });
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log('Reservation Request:', formData);
-    onComplete();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      onComplete();
+    }, 1500);
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-8 shadow-2xl border border-stone-100 animate-in fade-in duration-700 rounded-lg">
-      <h2 className="text-3xl font-serif mb-8 text-center text-stone-800 border-b pb-6">Secure a Table</h2>
+    <div className="glass-card p-8 md:p-12 max-w-2xl mx-auto">
+      <h3 className="text-3xl font-serif text-center mb-8">Secure Your Table</h3>
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
-          <label className="block text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-2">Full Name</label>
-          <input 
-            type="text" 
-            required 
-            placeholder="John Doe"
-            className="w-full border-b border-stone-200 p-3 bg-transparent focus:border-amber-500 outline-none transition-colors"
-            onChange={(e) => setFormData({...formData, name: e.target.value})}
-          />
-        </div>
-        
-        <div>
-          <label className="block text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-2">WhatsApp Number</label>
-          <input 
-            type="tel" 
-            required 
-            placeholder="+1 234 567 890"
-            className="w-full border-b border-stone-200 p-3 bg-transparent focus:border-amber-500 outline-none transition-colors"
-            onChange={(e) => setFormData({...formData, whatsapp: e.target.value})}
-          />
-          <p className="text-[10px] text-stone-400 mt-1 italic">Confirmation will be sent via WhatsApp</p>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <label className="text-xs uppercase tracking-widest text-zinc-500">Full Name</label>
+            <input required type="text" className="input-field" placeholder="John Doe" />
+          </div>
+          <div className="space-y-2">
+            <label className="text-xs uppercase tracking-widest text-zinc-500">Guests</label>
+            <select className="input-field">
+              {[1, 2, 3, 4, 5, 6].map(n => <option key={n} value={n}>{n} {n === 1 ? 'Guest' : 'Guests'}</option>)}
+            </select>
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-6">
-          <div>
-            <label className="block text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-2">Date</label>
-            <input 
-              type="date" 
-              required 
-              className="w-full border-b border-stone-200 p-3 bg-transparent focus:border-amber-500 outline-none transition-colors"
-              onChange={(e) => setFormData({...formData, date: e.target.value})}
-            />
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <label className="text-xs uppercase tracking-widest text-zinc-500">Date</label>
+            <input required type="date" className="input-field" />
           </div>
-          <div>
-            <label className="block text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-2">Guests</label>
-            <select 
-              className="w-full border-b border-stone-200 p-3 bg-transparent outline-none focus:border-amber-500 transition-colors"
-              onChange={(e) => setFormData({...formData, guests: e.target.value})}
-            >
-              {[1,2,3,4,5,6,7,8].map(n => <option key={n} value={n}>{n} Guests</option>)}
+          <div className="space-y-2">
+            <label className="text-xs uppercase tracking-widest text-zinc-500">Time</label>
+            <select className="input-field">
+              {['18:00', '19:00', '20:00', '21:00'].map(t => <option key={t} value={t}>{t}</option>)}
             </select>
           </div>
         </div>
 
         <button 
-          type="submit" 
-          className="w-full bg-amber-900 text-white p-5 uppercase tracking-widest text-xs font-bold hover:bg-amber-800 transition-all shadow-lg hover:shadow-xl active:scale-[0.98]"
+          disabled={loading}
+          className="btn-gold w-full mt-4 flex items-center justify-center space-x-2 group"
         >
-          Check Availability
+          {loading ? (
+            <span className="animate-pulse">Confirming...</span>
+          ) : (
+            <>
+              <span>Book Reservation</span>
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </>
+          )}
         </button>
       </form>
     </div>
