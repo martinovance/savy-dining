@@ -19,7 +19,7 @@ function App() {
         scrolled ? 'bg-black/90 backdrop-blur-md py-3 shadow-2xl' : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-serif font-bold tracking-tighter text-[#c9a55c]">SAVY</h1>
+          <h1 className="text-2xl font-serif font-bold tracking-tighter text-[#c9a55c]">SAVY DINING</h1>
           <div className="hidden md:flex space-x-8 text-xs uppercase tracking-[0.2em] font-medium text-white/70">
             <a href="#menu" className="hover:text-[#c9a55c] transition-colors">The Menu</a>
             <a href="#about" className="hover:text-[#c9a55c] transition-colors">About Us</a>
