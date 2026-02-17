@@ -6,13 +6,13 @@ const menuItems = [
         name: "Wagyu Carpaccio", 
         price: "$34", 
         desc: "Truffle vinaigrette, parmesan crisp, micro-greens.",
-        image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&q=80&w=400" 
+        image: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?q=80&w=800&auto=format&fit=crop"
       },
       { 
         name: "Pan-Seared Scallops", 
         price: "$42", 
         desc: "Cauliflower purée, pancetta, lemon herb oil.",
-        image: "https://images.unsplash.com/photo-1532639183881-28004163982a?auto=format&fit=crop&q=80&w=400"
+        image: "https://images.unsplash.com/photo-1599458252573-56ae36120de1?q=80&w=800&auto=format&fit=crop"
       }
     ]
   },
@@ -23,13 +23,13 @@ const menuItems = [
         name: "Lobster Thermidor", 
         price: "$68", 
         desc: "Brandy cream, Gruyère crust, butter-poached claw.",
-        image: "https://images.unsplash.com/photo-1553247407-23251cecca19?auto=format&fit=crop&q=80&w=400"
+        image: "https://images.unsplash.com/photo-1559715541-51812e3511cf?q=80&w=800&auto=format&fit=crop"
       },
       { 
         name: "Dry-Aged Ribeye", 
         price: "$85", 
         desc: "32-day aged, bone-in, roasted marrow butter.",
-        image: "https://images.unsplash.com/photo-1546241072-48010ad28c2c?auto=format&fit=crop&q=80&w=400"
+        image: "https://images.unsplash.com/photo-1546241072-48010ad28c2c?q=80&w=800&auto=format&fit=crop"
       }
     ]
   }
@@ -37,7 +37,7 @@ const menuItems = [
 
 const Menu = () => {
   return (
-    <div className="max-w-4xl mx-auto space-y-20 animate-in fade-in duration-1000">
+    <div id="menu" className="max-w-4xl mx-auto space-y-20 py-24 px-6 animate-in fade-in duration-1000">
       <div className="text-center space-y-4">
         <h2 className="text-4xl font-serif italic text-amber-500">Le Menu</h2>
         <p className="text-stone-500 uppercase tracking-[0.3em] text-xs">A Symphony of Flavors</p>
@@ -47,14 +47,14 @@ const Menu = () => {
         {menuItems.map((section, idx) => (
           <div key={idx} className="space-y-8">
             <h3 className="text-xl font-serif text-stone-300 border-b border-white/10 pb-4">{section.category}</h3>
-            <div className="space-y-8">
+            <div className="space-y-12">
               {section.items.map((item, i) => (
                 <div key={i} className="group cursor-default">
-                  <div className="relative overflow-hidden mb-4 rounded-lg aspect-video">
+                  <div className="aspect-[16/9] overflow-hidden rounded-sm mb-4 border border-white/5">
                     <img 
                       src={item.image} 
-                      alt={item.name} 
-                      className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700"
+                      alt={item.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100"
                     />
                   </div>
                   <div className="flex justify-between items-baseline mb-2">
