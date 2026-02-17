@@ -6,13 +6,13 @@ const menuItems = [
         name: "Wagyu Carpaccio", 
         price: "$34", 
         desc: "Truffle vinaigrette, parmesan crisp, micro-greens.",
-        image: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?q=80&w=800&auto=format&fit=crop"
+        image: "https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?auto=format&fit=crop&q=80"
       },
       { 
         name: "Pan-Seared Scallops", 
         price: "$42", 
         desc: "Cauliflower purée, pancetta, lemon herb oil.",
-        image: "https://images.unsplash.com/photo-1599458252573-56ae36120de1?q=80&w=800&auto=format&fit=crop"
+        image: "https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?auto=format&fit=crop&q=80"
       }
     ]
   },
@@ -50,18 +50,18 @@ const Menu = () => {
             <div className="space-y-12">
               {section.items.map((item, i) => (
                 <div key={i} className="group cursor-default">
-                  <div className="aspect-[16/9] overflow-hidden rounded-sm mb-4 border border-white/5">
+                  <div className=\"aspect-[16/9] overflow-hidden rounded-sm mb-4 border border-white/5\">
                     <img 
                       src={item.image} 
                       alt={item.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100"
+                      className=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100\"
                     />
                   </div>
-                  <div className="flex justify-between items-baseline mb-2">
-                    <h4 className="font-serif text-lg text-stone-200 group-hover:text-amber-500 transition-colors">{item.name}</h4>
-                    <span className="text-amber-500/80 font-serif">{item.price}</span>
+                  <div className=\"flex justify-between items-baseline mb-2\">
+                    <h4 className=\"font-serif text-lg text-stone-200 group-hover:text-amber-500 transition-colors\">{item.name}</h4>
+                    <span className=\"text-amber-500/80 font-serif\">{item.price}</span>
                   </div>
-                  <p className="text-stone-500 text-sm italic font-light leading-relaxed">{item.desc}</p>
+                  <p className=\"text-stone-500 text-sm italic font-light leading-relaxed\">{item.desc}</p>
                 </div>
               ))}
             </div>
