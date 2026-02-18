@@ -6,13 +6,13 @@ const menuItems = [
         name: "Wagyu Carpaccio", 
         price: "$34", 
         desc: "Truffle vinaigrette, parmesan crisp, micro-greens.",
-        image: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?q=80&w=800&auto=format&fit=crop"
+        image: "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format&fit=crop"
       },
       { 
         name: "Pan-Seared Scallops", 
         price: "$42", 
         desc: "Cauliflower purée, pancetta, lemon herb oil.",
-        image: "https://images.unsplash.com/photo-1599458252573-56ae36120de1?q=80&w=800&auto=format&fit=crop"
+        image: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&w=800&auto=format&fit=crop"
       }
     ]
   },
@@ -23,13 +23,13 @@ const menuItems = [
         name: "Lobster Thermidor", 
         price: "$68", 
         desc: "Brandy cream, Gruyère crust, butter-poached claw.",
-        image: "https://images.unsplash.com/photo-1559715541-51812e3511cf?q=80&w=800&auto=format&fit=crop"
+        image: "https://images.unsplash.com/photo-1553247407-23251cecca19?q=80&w=800&auto=format&fit=crop"
       },
       { 
         name: "Dry-Aged Ribeye", 
         price: "$85", 
         desc: "32-day aged, bone-in, roasted marrow butter.",
-        image: "https://images.unsplash.com/photo-1546241072-48010ad28c2c?q=80&w=800&auto=format&fit=crop"
+        image: "https://images.unsplash.com/photo-1558030006-45c675171f23?q=80&w=800&auto=format&fit=crop"
       }
     ]
   }
