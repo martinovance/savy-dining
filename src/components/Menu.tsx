@@ -23,13 +23,13 @@ const menuItems = [
         name: "Lobster Thermidor", 
         price: "$68", 
         desc: "Brandy cream, Gruyère crust, butter-poached claw.",
-        image: "https://images.unsplash.com/photo-1553247407-23251cecca19?q=80&w=800&auto=format&fit=crop"
+        image: "https://images.unsplash.com/photo-1551248429-4228d5fe73bc?q=80&w=800&auto=format&fit=crop"
       },
       { 
         name: "Dry-Aged Ribeye", 
         price: "$85", 
         desc: "32-day aged, bone-in, roasted marrow butter.",
-        image: "https://images.unsplash.com/photo-1558030006-45c675171f23?q=80&w=800&auto=format&fit=crop"
+        image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=800&auto=format&fit=crop"
       }
     ]
   }
