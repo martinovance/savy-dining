@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 
 const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800&auto=format&fit=crop";
 
@@ -105,19 +105,29 @@ const ITEMS_PER_PAGE = 10;
 
 const Menu = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [activeCategory, setActiveCategory] = useState("All");
+
+  // Debounce search query
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedQuery(searchQuery);
+    }, 300);
+
+    return () => clearTimeout(handler);
+  }, [searchQuery]);
 
   const categories = ["All", ...new Set(ALL_MENU_ITEMS.map(item => item.category))];
 
   const filteredItems = useMemo(() => {
     return ALL_MENU_ITEMS.filter(item => {
-      const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                            item.desc.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesSearch = item.name.toLowerCase().includes(debouncedQuery.toLowerCase()) || 
+                            item.desc.toLowerCase().includes(debouncedQuery.toLowerCase());
       const matchesCategory = activeCategory === "All" || item.category === activeCategory;
       return matchesSearch && matchesCategory;
     });
-  }, [searchQuery, activeCategory]);
+  }, [debouncedQuery, activeCategory]);
 
   const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
   const paginatedItems = filteredItems.slice(
@@ -132,6 +142,12 @@ const Menu = () => {
 
   const handleCategoryChange = (cat: string) => {
     setActiveCategory(cat);
+    setCurrentPage(1);
+  };
+
+  const resetFilters = () => {
+    setSearchQuery("");
+    setActiveCategory("All");
     setCurrentPage(1);
   };
 
@@ -169,8 +185,11 @@ const Menu = () => {
         </div>
       </div>
 
-      {/* Menu Grid */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 min-h-[600px]">
+      {/* Menu Grid - Keyed to trigger re-animation on page/filter change */}
+      <div 
+        key={`${activeCategory}-${currentPage}-${debouncedQuery}`}
+        className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 min-h-[600px]"
+      >
         {paginatedItems.length > 0 ? (
           paginatedItems.map((item) => (
             <div key={item.id} className="group flex flex-col space-y-4 animate-in slide-in-from-bottom-4 duration-700">
@@ -203,8 +222,14 @@ const Menu = () => {
             </div>
           ))
         ) : (
-          <div className="col-span-full text-center py-20">
+          <div className="col-span-full text-center py-20 space-y-6">
             <p className="text-stone-500 italic">No items match your selection.</p>
+            <button 
+              onClick={resetFilters}
+              className="px-6 py-2 border border-amber-500/50 text-amber-500 text-xs uppercase tracking-widest hover:bg-amber-500 hover:text-black transition-all"
+            >
+              Clear All Filters
+            </button>
           </div>
         )}
       </div>
