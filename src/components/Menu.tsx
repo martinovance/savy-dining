@@ -23,7 +23,7 @@ const menuItems = [
         name: "Lobster Thermidor", 
         price: "$68", 
         desc: "Brandy cream, Gruyère crust, butter-poached claw.",
-        image: "https://images.unsplash.com/photo-1551248429-4228d5fe73bc?q=80&w=800&auto=format&fit=crop"
+        image: "https://images.unsplash.com/photo-1590759668628-05b0fc34bb70?q=80&w=800&auto=format&fit=crop"
       },
       { 
         name: "Dry-Aged Ribeye", 
