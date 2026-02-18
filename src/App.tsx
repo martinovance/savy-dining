@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import ReservationForm from './components/ReservationForm';
 import Menu from './components/Menu';
+import AboutUs from './components/AboutUs';
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
@@ -53,8 +54,10 @@ function App() {
       {/* Content */}
       <main className="bg-[#0a0a0a]">
         <Menu />
+        
+        <AboutUs />
 
-        <section id="reservations" className="py-24 px-6 relative overflow-hidden">
+        <section id="reservations" className="py-24 px-6 relative overflow-hidden text-white">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-[#c9a55c] to-transparent"></div>
           
           <div className="max-w-4xl mx-auto">
