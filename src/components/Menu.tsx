@@ -101,7 +101,7 @@ const ALL_MENU_ITEMS = [
   }
 ];
 
-const ITEMS_PER_PAGE = 4;
+const ITEMS_PER_PAGE = 10;
 
 const Menu = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -136,7 +136,7 @@ const Menu = () => {
   };
 
   return (
-    <div id="menu" className="max-w-6xl mx-auto py-24 px-6 space-y-12 animate-in fade-in duration-1000">
+    <div id="menu" className="max-w-7xl mx-auto py-24 px-6 space-y-12 animate-in fade-in duration-1000">
       <div className="text-center space-y-4">
         <h2 className="text-5xl font-serif italic text-amber-500">Le Menu</h2>
         <p className="text-stone-500 uppercase tracking-[0.4em] text-xs">Exquisite Gastronomy</p>
@@ -170,11 +170,11 @@ const Menu = () => {
       </div>
 
       {/* Menu Grid */}
-      <div className="grid md:grid-cols-2 gap-12 min-h-[600px]">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 min-h-[600px]">
         {paginatedItems.length > 0 ? (
           paginatedItems.map((item) => (
-            <div key={item.id} className="group flex flex-col sm:flex-row gap-6 animate-in slide-in-from-bottom-4 duration-700">
-              <div className="sm:w-48 h-48 flex-shrink-0 overflow-hidden rounded-sm border border-white/5">
+            <div key={item.id} className="group flex flex-col space-y-4 animate-in slide-in-from-bottom-4 duration-700">
+              <div className="aspect-square overflow-hidden rounded-sm border border-white/5">
                 <img 
                   src={item.image} 
                   alt={item.name}
@@ -184,24 +184,26 @@ const Menu = () => {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 opacity-90 group-hover:opacity-100"
                 />
               </div>
-              <div className="flex flex-col justify-center flex-grow space-y-2">
+              <div className="flex flex-col flex-grow space-y-2">
                 <div className="flex justify-between items-baseline">
-                  <h4 className="font-serif text-xl text-stone-200 group-hover:text-amber-500 transition-colors">
+                  <h4 className="font-serif text-lg text-stone-200 group-hover:text-amber-500 transition-colors truncate pr-2" title={item.name}>
                     {item.name}
                   </h4>
-                  <span className="text-amber-500 font-serif ml-4">{item.price}</span>
+                  <span className="text-amber-500 font-serif text-sm flex-shrink-0">{item.price}</span>
                 </div>
-                <p className="text-stone-500 text-sm italic font-light leading-relaxed">
+                <p className="text-stone-500 text-xs italic font-light leading-relaxed line-clamp-3">
                   {item.desc}
                 </p>
-                <span className="text-[10px] text-stone-600 uppercase tracking-widest pt-2">
-                  {item.category}
-                </span>
+                <div className="pt-2">
+                  <span className="text-[9px] px-2 py-0.5 border border-stone-800 text-stone-600 uppercase tracking-widest rounded-full">
+                    {item.category}
+                  </span>
+                </div>
               </div>
             </div>
           ))
         ) : (
-          <div className="col-span-2 text-center py-20">
+          <div className="col-span-full text-center py-20">
             <p className="text-stone-500 italic">No items match your selection.</p>
           </div>
         )}
@@ -209,7 +211,7 @@ const Menu = () => {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-8 pt-12">
+        <div className="flex justify-center items-center gap-8 pt-12 border-t border-white/5">
           <button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage(prev => prev - 1)}
