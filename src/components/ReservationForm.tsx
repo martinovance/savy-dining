@@ -22,6 +22,7 @@ interface BookingDetails {
 
 const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails) => void }) => {
   const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,8 +33,9 @@ const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails)
     time: '19:00'
   });
 
+  const selectedCountry = COUNTRY_CODES.find(c => c.code === formData.countryCode) || COUNTRY_CODES[0];
+
   const sendAutomatedWhatsApp = async (to: string, details: any) => {
-    // Simulated WhatsApp API logic
     console.log('Initiating automated WhatsApp delivery via Service Provider...');
     const payload = {
       from: 'whatsapp:+14155238886',
@@ -112,18 +114,40 @@ const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails)
           </div>
           <div className="space-y-2">
             <label className="text-xs uppercase tracking-widest text-zinc-500">WhatsApp Number</label>
-            <div className="flex space-x-2">
-              <select 
-                className="input-field w-2/5"
-                value={formData.countryCode}
-                onChange={(e) => setFormData({...formData, countryCode: e.target.value})}
-              >
-                {COUNTRY_CODES.map(c => (
-                  <option key={c.code} value={c.code}>
-                    {c.flag} {c.code}
-                  </option>
-                ))}
-              </select>
+            <div className="flex space-x-2 relative">
+              <div className="w-2/5 relative">
+                <button
+                  type="button"
+                  onClick={() => setIsOpen(!isOpen)}
+                  className="input-field w-full flex items-center justify-between"
+                >
+                  <span className="flex items-center space-x-2">
+                    <span className="text-xl">{selectedCountry.flag}</span>
+                    <span className="text-zinc-400">{selectedCountry.code}</span>
+                  </span>
+                  <span className="text-zinc-500">▾</span>
+                </button>
+                
+                {isOpen && (
+                  <div className="absolute z-50 mt-1 w-full max-h-60 overflow-y-auto bg-black border border-zinc-800 rounded shadow-xl py-1">
+                    {COUNTRY_CODES.map(c => (
+                      <button
+                        key={c.code}
+                        type="button"
+                        className="w-full flex items-center space-x-3 px-3 py-2 hover:bg-zinc-900 text-left transition-colors"
+                        onClick={() => {
+                          setFormData({...formData, countryCode: c.code});
+                          setIsOpen(false);
+                        }}
+                      >
+                        <span className="text-xl">{c.flag}</span>
+                        <span className="text-sm text-zinc-300">{c.name}</span>
+                        <span className="text-xs text-zinc-500 ml-auto">{c.code}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
               <input 
                 required 
                 type="tel" 
