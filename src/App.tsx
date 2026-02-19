@@ -6,12 +6,18 @@ import AboutUs from './components/AboutUs';
 function App() {
   const [scrolled, setScrolled] = useState(false);
   const [bookingStep, setBookingStep] = useState<'idle' | 'success'>('idle');
+  const [lastBooking, setLastBooking] = useState<{ name: string; date: string; time: string; guests: string; phone: string } | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleBookingComplete = (details: { name: string; date: string; time: string; guests: string; phone: string }) => {
+    setLastBooking(details);
+    setBookingStep('success');
+  };
 
   return (
     <div className="min-h-screen">
@@ -61,24 +67,30 @@ function App() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-[#c9a55c] to-transparent"></div>
           
           <div className="max-w-4xl mx-auto">
-            {bookingStep === 'success' ? (
+            {bookingStep === 'success' && lastBooking ? (
               <div className="text-center py-20 space-y-6">
                 <div className="w-20 h-20 border border-[#c9a55c] rounded-full flex items-center justify-center mx-auto mb-8">
                   <span className="text-3xl text-[#c9a55c]">✓</span>
                 </div>
-                <h3 className="text-4xl font-serif">Reservation Confirmed</h3>
-                <p className="text-zinc-500 max-w-md mx-auto">
-                  A confirmation email has been sent. We look forward to hosting you for an unforgettable evening.
-                </p>
+                <h3 className="text-4xl font-serif text-[#c9a55c]">Reservation Confirmed</h3>
+                <div className="space-y-2 text-zinc-300">
+                  <p className="text-xl">Thank you, {lastBooking.name}.</p>
+                  <p className="text-zinc-500 max-w-md mx-auto">
+                    A confirmation message has been queued for your WhatsApp number <span className="text-white">+{lastBooking.phone}</span>.
+                  </p>
+                  <div className="pt-4 text-sm uppercase tracking-widest text-[#c9a55c]">
+                    {lastBooking.date} at {lastBooking.time} • {lastBooking.guests} Guests
+                  </div>
+                </div>
                 <button 
                   onClick={() => setBookingStep('idle')}
-                  className="text-[#c9a55c] hover:underline uppercase text-xs tracking-widest"
+                  className="mt-8 text-zinc-500 hover:text-[#c9a55c] uppercase text-xs tracking-[0.2em] transition-colors"
                 >
                   Make another booking
                 </button>
               </div>
             ) : (
-              <ReservationForm onComplete={() => setBookingStep('success')} />
+              <ReservationForm onComplete={handleBookingComplete} />
             )}
           </div>
         </section>
