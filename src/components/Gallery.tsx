@@ -10,7 +10,7 @@ interface GalleryItem {
 const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: 1,
-    url: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=1000',
+    url: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1000',
     category: 'Ambiance',
     title: 'The Main Hall'
   },
@@ -28,19 +28,19 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: 4,
-    url: 'https://images.unsplash.com/photo-1550966841-3ee39b27bc8c?auto=format&fit=crop&q=80&w=1000',
+    url: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=1000',
     category: 'Signature',
     title: 'Lobster Risotto'
   },
   {
     id: 5,
-    url: 'https://images.unsplash.com/photo-1544145945-f904253db0ad?auto=format&fit=crop&q=80&w=1000',
+    url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=1000',
     category: 'Ambiance',
     title: 'Private Suites'
   },
   {
     id: 6,
-    url: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&q=80&w=1000',
+    url: 'https://images.unsplash.com/photo-1470333855333-6883fa747864?auto=format&fit=crop&q=80&w=1000',
     category: 'Cocktails',
     title: 'The Cellar'
   }
@@ -74,6 +74,9 @@ const Gallery = () => {
                 src={item.url} 
                 alt={item.title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=1000';
+                }}
               />
               <div className="absolute bottom-0 left-0 right-0 p-8 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <span className="text-[10px] uppercase tracking-[0.3em] text-[#c9a55c] opacity-0 group-hover:opacity-100 transition-opacity duration-500 mb-2 block">
