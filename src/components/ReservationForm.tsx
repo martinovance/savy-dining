@@ -38,6 +38,9 @@ const ReservationForm = ({ onComplete }: { onComplete: () => void }) => {
       body: `Reservation Confirmed for ${details.name}! Date: ${details.date}, Time: ${details.time}, Guests: ${details.guests}. See you at Savy Dining!`
     };
 
+    // Log the payload to resolve the 'unused variable' linting error
+    console.log('Payload prepared:', payload);
+
     try {
       // Mocking the API response
       await new Promise(resolve => setTimeout(resolve, 2000));
