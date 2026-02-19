@@ -141,8 +141,7 @@ const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails)
                         }}
                       >
                         <span className="text-xl">{c.flag}</span>
-                        <span className="text-sm text-zinc-300">{c.name}</span>
-                        <span className="text-xs text-zinc-500 ml-auto">{c.code}</span>
+                        <span className="text-xs text-zinc-300 ml-auto">{c.code}</span>
                       </button>
                     ))}
                   </div>
