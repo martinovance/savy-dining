@@ -125,7 +125,7 @@ const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails)
                     <img 
                       src={`https://flagcdn.com/w40/${selectedCountry.iso}.png`} 
                       alt=""
-                      className="w-5 h-auto rounded-sm"
+                      className="w-6 h-4 object-cover rounded-sm"
                     />
                     <span className="text-zinc-400">{selectedCountry.code}</span>
                   </span>
@@ -133,7 +133,7 @@ const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails)
                 </button>
                 
                 {isOpen && (
-                  <div className="absolute z-50 mt-1 w-full max-h-60 overflow-y-auto bg-zinc-950 border border-zinc-800 rounded shadow-2xl py-1">
+                  <div className="absolute z-50 mt-1 w-full max-h-60 overflow-y-auto bg-zinc-950 border border-zinc-800 rounded shadow-2xl py-1 scrollbar-hide">
                     {COUNTRY_CODES.map(c => (
                       <button
                         key={c.code}
@@ -147,7 +147,7 @@ const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails)
                         <img 
                           src={`https://flagcdn.com/w40/${c.iso}.png`} 
                           alt=""
-                          className="w-5 h-auto rounded-sm"
+                          className="w-6 h-4 object-cover rounded-sm"
                         />
                         <span className="text-xs text-zinc-300 ml-auto">{c.code}</span>
                       </button>
