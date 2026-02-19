@@ -74,6 +74,15 @@ const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails)
 
   return (
     <div className="glass-card p-8 md:p-12 max-w-2xl mx-auto relative">
+      <style>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
       <h3 className="text-3xl font-serif text-center mb-8">Secure Your Table</h3>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid md:grid-cols-2 gap-6">
@@ -125,7 +134,7 @@ const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails)
                     <img 
                       src={`https://flagcdn.com/w40/${selectedCountry.iso}.png`} 
                       alt=""
-                      className="w-6 h-4 object-cover rounded-sm"
+                      className="w-6 h-4.5 object-cover rounded-sm"
                     />
                     <span className="text-zinc-400">{selectedCountry.code}</span>
                   </span>
@@ -133,7 +142,7 @@ const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails)
                 </button>
                 
                 {isOpen && (
-                  <div className="absolute z-50 mt-1 w-full max-h-60 overflow-y-auto bg-zinc-950 border border-zinc-800 rounded shadow-2xl py-1 scrollbar-hide">
+                  <div className="absolute z-50 mt-1 w-full max-h-60 overflow-y-auto bg-zinc-950 border border-zinc-800 rounded shadow-2xl py-1 no-scrollbar">
                     {COUNTRY_CODES.map(c => (
                       <button
                         key={c.code}
@@ -147,7 +156,7 @@ const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails)
                         <img 
                           src={`https://flagcdn.com/w40/${c.iso}.png`} 
                           alt=""
-                          className="w-6 h-4 object-cover rounded-sm"
+                          className="w-6 h-4.5 object-cover rounded-sm"
                         />
                         <span className="text-xs text-zinc-300 ml-auto">{c.code}</span>
                       </button>
@@ -159,7 +168,7 @@ const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails)
                 required 
                 type="tel" 
                 className="input-field w-3/5" 
-                placeholder="000-0000"
+                placeholder="0123456789"
                 value={formData.phone}
                 onChange={(e) => setFormData({...formData, phone: e.target.value})}
               />
