@@ -1,7 +1,21 @@
 import { useState, FormEvent } from 'react';
 
+const COUNTRY_CODES = [
+  { code: '+1', country: 'US/CA' },
+  { code: '+44', country: 'UK' },
+  { code: '+234', country: 'NG' },
+  { code: '+91', country: 'IN' },
+  { code: '+61', country: 'AU' },
+  { code: '+49', country: 'DE' },
+  { code: '+33', country: 'FR' },
+  { code: '+81', country: 'JP' },
+  { code: '+27', country: 'ZA' },
+  { code: '+55', country: 'BR' },
+];
+
 const ReservationForm = ({ onComplete }: { onComplete: () => void }) => {
   const [loading, setLoading] = useState(false);
+  const [countryCode, setCountryCode] = useState('+1');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,15 +29,27 @@ const ReservationForm = ({ onComplete }: { onComplete: () => void }) => {
     e.preventDefault();
     setLoading(true);
     
-    // Simulating dummy email notification logic
+    // Construct WhatsApp message
+    const fullPhone = `${countryCode}${formData.phone.replace(/\D/g, '')}`;
+    const message = encodeURIComponent(
+      `*Reservation Confirmation - Savy Dining*\n\n` +
+      `Hello ${formData.name},\n` +
+      `Your table for ${formData.guests} has been reserved for:\n` +
+      `📅 *Date:* ${formData.date}\n` +
+      `⏰ *Time:* ${formData.time}\n\n` +
+      `We look forward to serving you!`
+    );
+    
+    const whatsappUrl = `https://wa.me/${fullPhone}?text=${message}`;
+
     console.log("Simulating email confirmation to:", formData.email);
     console.log("Booking details:", formData);
 
     setTimeout(() => {
       setLoading(false);
+      // Open WhatsApp in a new tab
+      window.open(whatsappUrl, '_blank');
       onComplete();
-      // Dummy frontend method: Using an alert or a hidden mailto can work, 
-      // but for testing we'll just log it and proceed to the success state.
     }, 1500);
   };
 
@@ -68,15 +94,26 @@ const ReservationForm = ({ onComplete }: { onComplete: () => void }) => {
             />
           </div>
           <div className="space-y-2">
-            <label className="text-xs uppercase tracking-widest text-zinc-500">Phone Number</label>
-            <input 
-              required 
-              type="tel" 
-              className="input-field" 
-              placeholder="+1 (555) 000-0000"
-              value={formData.phone}
-              onChange={(e) => setFormData({...formData, phone: e.target.value})}
-            />
+            <label className="text-xs uppercase tracking-widest text-zinc-500">WhatsApp Number</label>
+            <div className="flex space-x-2">
+              <select 
+                className="input-field w-24 text-sm px-2"
+                value={countryCode}
+                onChange={(e) => setCountryCode(e.target.value)}
+              >
+                {COUNTRY_CODES.map(c => (
+                  <option key={c.code} value={c.code}>{c.code} ({c.country})</option>
+                ))}
+              </select>
+              <input 
+                required 
+                type="tel" 
+                className="input-field flex-1" 
+                placeholder="0000000000"
+                value={formData.phone}
+                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+              />
+            </div>
           </div>
         </div>
 
@@ -116,6 +153,9 @@ const ReservationForm = ({ onComplete }: { onComplete: () => void }) => {
             </>
           )}
         </button>
+        <p className="text-[10px] text-center text-zinc-500 uppercase tracking-tighter">
+          A confirmation will be sent via WhatsApp
+        </p>
       </form>
     </div>
   );
