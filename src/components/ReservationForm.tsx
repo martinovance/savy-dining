@@ -1,15 +1,15 @@
 import { useState, FormEvent } from 'react';
 
 const COUNTRY_CODES = [
-  { code: '+1', name: 'USA', flag: '🇺🇸' },
-  { code: '+44', name: 'UK', flag: '🇬🇧' },
-  { code: '+234', name: 'Nigeria', flag: '🇳🇬' },
-  { code: '+91', name: 'India', flag: '🇮🇳' },
-  { code: '+61', name: 'Australia', flag: '🇦🇺' },
-  { code: '+971', name: 'UAE', flag: '🇦🇪' },
-  { code: '+27', name: 'South Africa', flag: '🇿🇦' },
-  { code: '+33', name: 'France', flag: '🇫🇷' },
-  { code: '+49', name: 'Germany', flag: '🇩🇪' },
+  { code: '+1', iso: 'us' },
+  { code: '+44', iso: 'gb' },
+  { code: '+234', iso: 'ng' },
+  { code: '+91', iso: 'in' },
+  { code: '+61', iso: 'au' },
+  { code: '+971', iso: 'ae' },
+  { code: '+27', iso: 'za' },
+  { code: '+33', iso: 'fr' },
+  { code: '+49', iso: 'de' },
 ];
 
 interface BookingDetails {
@@ -122,14 +122,18 @@ const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails)
                   className="input-field w-full flex items-center justify-between"
                 >
                   <span className="flex items-center space-x-2">
-                    <span className="text-xl">{selectedCountry.flag}</span>
+                    <img 
+                      src={`https://flagcdn.com/w40/${selectedCountry.iso}.png`} 
+                      alt=""
+                      className="w-5 h-auto rounded-sm"
+                    />
                     <span className="text-zinc-400">{selectedCountry.code}</span>
                   </span>
-                  <span className="text-zinc-500">▾</span>
+                  <span className="text-zinc-500 text-[10px]">▼</span>
                 </button>
                 
                 {isOpen && (
-                  <div className="absolute z-50 mt-1 w-full max-h-60 overflow-y-auto bg-black border border-zinc-800 rounded shadow-xl py-1">
+                  <div className="absolute z-50 mt-1 w-full max-h-60 overflow-y-auto bg-zinc-950 border border-zinc-800 rounded shadow-2xl py-1">
                     {COUNTRY_CODES.map(c => (
                       <button
                         key={c.code}
@@ -140,7 +144,11 @@ const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails)
                           setIsOpen(false);
                         }}
                       >
-                        <span className="text-xl">{c.flag}</span>
+                        <img 
+                          src={`https://flagcdn.com/w40/${c.iso}.png`} 
+                          alt=""
+                          className="w-5 h-auto rounded-sm"
+                        />
                         <span className="text-xs text-zinc-300 ml-auto">{c.code}</span>
                       </button>
                     ))}
