@@ -1,4 +1,4 @@
-import { LucideIcon, Camera, Utensils, GlassWater, Users } from 'lucide-react';
+import { Camera } from 'lucide-react';
 
 interface GalleryItem {
   id: number;
