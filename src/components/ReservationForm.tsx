@@ -134,7 +134,7 @@ const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails)
                     <img 
                       src={`https://flagcdn.com/w40/${selectedCountry.iso}.png`} 
                       alt=""
-                      className="w-6 h-4.5 object-cover rounded-sm"
+                      className="w-6 h-4 object-cover rounded-sm"
                     />
                     <span className="text-zinc-400">{selectedCountry.code}</span>
                   </span>
@@ -156,7 +156,7 @@ const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails)
                         <img 
                           src={`https://flagcdn.com/w40/${c.iso}.png`} 
                           alt=""
-                          className="w-6 h-4.5 object-cover rounded-sm"
+                          className="w-6 h-4 object-cover rounded-sm"
                         />
                         <span className="text-xs text-zinc-300 ml-auto">{c.code}</span>
                       </button>
@@ -168,7 +168,7 @@ const ReservationForm = ({ onComplete }: { onComplete: (details: BookingDetails)
                 required 
                 type="tel" 
                 className="input-field w-3/5" 
-                placeholder="0123456789"
+                placeholder="10 digits"
                 value={formData.phone}
                 onChange={(e) => setFormData({...formData, phone: e.target.value})}
               />
