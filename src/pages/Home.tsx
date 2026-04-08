@@ -5,7 +5,7 @@ import AboutUs from '../components/AboutUs';
 import Gallery from '../components/Gallery';
 
 export default function Home() {
-  const [scrolled, setScrolled] = useState(false);
+  const [, setScrolled] = useState(false);
   const [bookingStep, setBookingStep] = useState<'idle' | 'success'>('idle');
   const [lastBooking, setLastBooking] = useState<{ name: string; date: string; time: string; guests: string; phone: string } | null>(null);
 
