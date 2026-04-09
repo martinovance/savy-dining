@@ -5,7 +5,11 @@ import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import Orders from './pages/Orders';
 
-function App() {
+interface AppProps {
+  isAuthEnabled?: boolean;
+}
+
+function App({ isAuthEnabled = true }: AppProps) {
   const navigate = useNavigate();
 
   return (
@@ -22,19 +26,25 @@ function App() {
           <div className="flex items-center space-x-8 text-[10px] uppercase tracking-[0.2em] font-medium">
             <a href="/savy-dining/#menu" className="text-white/70 hover:text-[#c9a55c] transition-colors">Menu</a>
             
-            <SignedIn>
-              <button onClick={() => navigate('/dashboard')} className="text-white/70 hover:text-[#c9a55c] transition-colors">Dashboard</button>
-              <button onClick={() => navigate('/orders')} className="text-white/70 hover:text-[#c9a55c] transition-colors">Orders</button>
-              <UserButton afterSignOutUrl="/savy-dining/" />
-            </SignedIn>
-            
-            <SignedOut>
-              <SignInButton mode="modal">
-                <button className="text-[#c9a55c] border border-[#c9a55c]/30 px-4 py-2 hover:bg-[#c9a55c] hover:text-black transition-all">
-                  Sign In
-                </button>
-              </SignInButton>
-            </SignedOut>
+            {isAuthEnabled ? (
+              <>
+                <SignedIn>
+                  <button onClick={() => navigate('/dashboard')} className="text-white/70 hover:text-[#c9a55c] transition-colors">Dashboard</button>
+                  <button onClick={() => navigate('/orders')} className="text-white/70 hover:text-[#c9a55c] transition-colors">Orders</button>
+                  <UserButton afterSignOutUrl="/savy-dining/" />
+                </SignedIn>
+                
+                <SignedOut>
+                  <SignInButton mode="modal">
+                    <button className="text-[#c9a55c] border border-[#c9a55c]/30 px-4 py-2 hover:bg-[#c9a55c] hover:text-black transition-all">
+                      Sign In
+                    </button>
+                  </SignInButton>
+                </SignedOut>
+              </>
+            ) : (
+              <span className="text-white/30 italic">Auth Disabled</span>
+            )}
           </div>
         </div>
       </nav>
