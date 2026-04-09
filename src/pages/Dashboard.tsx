@@ -146,7 +146,10 @@ const Dashboard = () => {
                   <span className="font-serif italic text-[#c9a55c]">Sparkling</span>
                 </li>
               </ul>
-              <button className="w-full mt-8 py-3 border border-[#c9a55c]/30 text-[10px] uppercase tracking-widest hover:bg-[#c9a55c] hover:text-black transition-all">
+              <button 
+                onClick={() => navigate('/profile')}
+                className="w-full mt-8 py-3 border border-[#c9a55c]/30 text-[10px] uppercase tracking-widest hover:bg-[#c9a55c] hover:text-black transition-all"
+              >
                 Update Profile
               </button>
             </div>
