@@ -9,13 +9,20 @@ import './index.css'
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
 const Root = () => {
-  // We ALWAYS wrap in ClerkProvider, but if the key is missing, 
-  // we provide an empty string to satisfy the context provider 
-  // and handle the "disabled" state within the components.
-  return (
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY || "missing_key"}>
+  // If no key is provided, we don't wrap in ClerkProvider to avoid the "Invalid Key" crash.
+  // Instead, we render the app directly. The components will handle the absence of Clerk.
+  if (!PUBLISHABLE_KEY) {
+    return (
       <BrowserRouter basename="/savy-dining">
-        <App isAuthEnabled={!!PUBLISHABLE_KEY} />
+        <App isAuthEnabled={false} />
+      </BrowserRouter>
+    );
+  }
+
+  return (
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+      <BrowserRouter basename="/savy-dining">
+        <App isAuthEnabled={true} />
       </BrowserRouter>
     </ClerkProvider>
   );
