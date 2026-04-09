@@ -25,7 +25,7 @@ function App({ isAuthEnabled = true }: AppProps) {
           </h1>
           
           <div className="flex items-center space-x-8 text-[10px] uppercase tracking-[0.2em] font-medium">
-            <button onClick={() => navigate('/')} className="text-white/70 hover:text-[#c9a55c] transition-colors">Home</button>
+            <button onClick={() => navigate('/')} className="text-white/70 hover:text-[#c9a55c] transition-colors uppercase">HOME</button>
             <a href="#menu" onClick={(e) => {
               if (window.location.pathname !== '/savy-dining/') {
                 e.preventDefault();
@@ -35,13 +35,13 @@ function App({ isAuthEnabled = true }: AppProps) {
                   el?.scrollIntoView({ behavior: 'smooth' });
                 }, 100);
               }
-            }} className="text-white/70 hover:text-[#c9a55c] transition-colors">Menu</a>
+            }} className="text-white/70 hover:text-[#c9a55c] transition-colors uppercase">MENU</a>
             
             {isAuthEnabled ? (
               <>
                 <SignedIn>
-                  <button onClick={() => navigate('/dashboard')} className="text-white/70 hover:text-[#c9a55c] transition-colors">Dashboard</button>
-                  <button onClick={() => navigate('/orders')} className="text-white/70 hover:text-[#c9a55c] transition-colors">Orders</button>
+                  <button onClick={() => navigate('/dashboard')} className="text-white/70 hover:text-[#c9a55c] transition-colors uppercase">DASHBOARD</button>
+                  <button onClick={() => navigate('/orders')} className="text-white/70 hover:text-[#c9a55c] transition-colors uppercase">ORDERS</button>
                   <UserButton 
                     afterSignOutUrl="/savy-dining/"
                     signInUrl="/savy-dining/"
@@ -54,14 +54,14 @@ function App({ isAuthEnabled = true }: AppProps) {
                     afterSignInUrl="/savy-dining/dashboard"
                     afterSignUpUrl="/savy-dining/dashboard"
                   >
-                    <button className="text-[#c9a55c] border border-[#c9a55c]/30 px-4 py-2 hover:bg-[#c9a55c] hover:text-black transition-all">
-                      Sign In
+                    <button className="text-[#c9a55c] border border-[#c9a55c]/30 px-4 py-2 hover:bg-[#c9a55c] hover:text-black transition-all uppercase tracking-widest">
+                      SIGN IN
                     </button>
                   </SignInButton>
                 </SignedOut>
               </>
             ) : (
-              <span className="text-white/30 italic">Auth Disabled</span>
+              <span className="text-white/30 italic uppercase">AUTH DISABLED</span>
             )}
           </div>
         </div>
