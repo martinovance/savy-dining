@@ -25,7 +25,17 @@ function App({ isAuthEnabled = true }: AppProps) {
           </h1>
           
           <div className="flex items-center space-x-8 text-[10px] uppercase tracking-[0.2em] font-medium">
-            <a href="/savy-dining/#menu" className="text-white/70 hover:text-[#c9a55c] transition-colors">Menu</a>
+            <button onClick={() => navigate('/')} className="text-white/70 hover:text-[#c9a55c] transition-colors">Home</button>
+            <a href="#menu" onClick={(e) => {
+              if (window.location.pathname !== '/savy-dining/') {
+                e.preventDefault();
+                navigate('/');
+                setTimeout(() => {
+                  const el = document.getElementById('menu');
+                  el?.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }
+            }} className="text-white/70 hover:text-[#c9a55c] transition-colors">Menu</a>
             
             {isAuthEnabled ? (
               <>
@@ -56,6 +66,8 @@ function App({ isAuthEnabled = true }: AppProps) {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/orders" element={<Orders />} />
+          {/* Fallback for GitHub Pages 404s */}
+          <Route path="*" element={<Home />} />
         </Routes>
       </main>
 
