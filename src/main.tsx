@@ -5,31 +5,19 @@ import { ClerkProvider } from '@clerk/clerk-react'
 import App from './App.tsx'
 import './index.css'
 
-// @ts-ignore
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
-const Root = () => {
-  // We wrap in ClerkProvider if the key exists. 
-  // If it doesn't, we still render App but pass isAuthEnabled=false.
-  if (!PUBLISHABLE_KEY) {
-    return (
-      <BrowserRouter basename="/savy-dining">
-        <App isAuthEnabled={false} />
-      </BrowserRouter>
-    );
-  }
-
-  return (
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-      <BrowserRouter basename="/savy-dining">
-        <App isAuthEnabled={true} />
-      </BrowserRouter>
-    </ClerkProvider>
-  );
-};
+// Debugging: Log if key is missing (safe for production as it's just a boolean check)
+if (!PUBLISHABLE_KEY) {
+  console.warn("Clerk Publishable Key is missing from environment variables.");
+}
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Root />
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY || ""}>
+      <BrowserRouter basename="/savy-dining">
+        <App isAuthEnabled={!!PUBLISHABLE_KEY} />
+      </BrowserRouter>
+    </ClerkProvider>
   </React.StrictMode>,
 )

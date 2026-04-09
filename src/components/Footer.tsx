@@ -1,43 +1,67 @@
 export default function Footer() {
   return (
-    <footer className="bg-black text-white py-16 px-6 border-t border-white/5">
+    <footer className="bg-[#050505] pt-24 pb-12 px-6 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-serif text-[#c9a55c] mb-6">SAVY DINING</h3>
-            <p className="text-white/50 max-w-sm leading-relaxed text-sm">
-              An avant-garde culinary destination where tradition meets innovation. 
-              Experience the finest ingredients curated by our master chefs.
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          {/* Logo and About */}
+          <div className="col-span-1 md:col-span-1 space-y-6">
+            <h1 className="text-2xl font-serif font-bold tracking-tighter text-[#c9a55c]">SAVY DINING</h1>
+            <p className="text-stone-500 text-sm leading-relaxed font-light">
+              An immersive culinary journey defined by elegance, innovation, and the pursuit of perfection.
             </p>
           </div>
-          
-          <div>
-            <h4 className="text-[10px] uppercase tracking-[0.2em] text-[#c9a55c] mb-6">Location</h4>
-            <p className="text-white/50 text-sm leading-relaxed">
-              123 Culinary Avenue<br />
-              Design District<br />
-              New York, NY 10001
-            </p>
+
+          {/* Quick Links */}
+          <div className="space-y-6">
+            <h4 className="text-white text-xs uppercase tracking-[0.2em] font-medium">Quick Links</h4>
+            <ul className="space-y-4 text-sm text-stone-500 font-light">
+              <li><a href="#menu" className="hover:text-[#c9a55c] transition-colors">The Menu</a></li>
+              <li><a href="#about" className="hover:text-[#c9a55c] transition-colors">Our Story</a></li>
+              <li><a href="#reservations" className="hover:text-[#c9a55c] transition-colors">Reservations</a></li>
+              <li><a href="#" className="hover:text-[#c9a55c] transition-colors">Private Dining</a></li>
+            </ul>
           </div>
-          
-          <div>
-            <h4 className="text-[10px] uppercase tracking-[0.2em] text-[#c9a55c] mb-6">Hours</h4>
-            <p className="text-white/50 text-sm leading-relaxed">
-              Mon - Thu: 5pm - 10pm<br />
-              Fri - Sat: 5pm - 11pm<br />
-              Sun: 4pm - 9pm
+
+          {/* Location */}
+          <div className="space-y-6">
+            <h4 className="text-white text-xs uppercase tracking-[0.2em] font-medium">Location</h4>
+            <address className="text-sm text-stone-500 font-light not-italic leading-relaxed">
+              42 Culinary Avenue<br />
+              Gastronomy District<br />
+              London, UK
+            </address>
+            <div className="text-sm text-stone-500 font-light">
+              T: +44 20 7946 0000
+            </div>
+          </div>
+
+          {/* Newsletter */}
+          <div className="space-y-6">
+            <h4 className="text-white text-xs uppercase tracking-[0.2em] font-medium">Newsletter</h4>
+            <p className="text-xs text-stone-500 uppercase tracking-widest leading-relaxed">
+              Join our circle for exclusive seasonal updates.
             </p>
+            <form className="flex border-b border-stone-800 pb-2">
+              <input 
+                type="email" 
+                placeholder="Your email address" 
+                className="bg-transparent text-sm w-full outline-none text-stone-300 placeholder:text-stone-700"
+              />
+              <button type="submit" className="text-[#c9a55c] text-xs uppercase tracking-widest ml-4 hover:opacity-70 transition-opacity">
+                Join
+              </button>
+            </form>
           </div>
         </div>
-        
-        <div className="pt-8 border-t border-white/5 flex flex-col md:row justify-between items-center gap-4">
-          <p className="text-[10px] uppercase tracking-[0.2em] text-white/30">
-            © 2024 SAVY DINING. ALL RIGHTS RESERVED.
-          </p>
-          <div className="flex space-x-6 text-[10px] uppercase tracking-[0.2em]">
-            <a href="#" className="text-white/30 hover:text-[#c9a55c] transition-colors">Privacy</a>
-            <a href="#" className="text-white/30 hover:text-[#c9a55c] transition-colors">Terms</a>
-            <a href="#" className="text-white/30 hover:text-[#c9a55c] transition-colors">Instagram</a>
+
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+          <div className="text-stone-600 text-[10px] uppercase tracking-[0.3em] font-light">
+            © 2024 SAVY DINING. EXCELLENCE IN EVERY DETAIL.
+          </div>
+          <div className="flex space-x-12">
+            <a href="#" className="text-stone-500 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Instagram</a>
+            <a href="#" className="text-stone-500 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Facebook</a>
+            <a href="#" className="text-stone-500 hover:text-white text-[10px] uppercase tracking-widest transition-colors">X (Twitter)</a>
           </div>
         </div>
       </div>
