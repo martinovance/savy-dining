@@ -23,12 +23,13 @@ export default function Home() {
   return (
     <div>
       <section className="relative h-screen flex items-center justify-center overflow-hidden -mt-20">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-[#0a0a0a] z-10"></div>
+        <div className="absolute inset-0 z-0 bg-zinc-900">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-[#0a0a0a] z-10"></div>
           <img 
             src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=2000" 
-            className="w-full h-full object-cover scale-110"
+            className="w-full h-full object-cover scale-110 opacity-0 animate-fade-in-slow"
             alt="Interior"
+            onLoad={(e) => (e.currentTarget.style.opacity = '1')}
           />
         </div>
         
